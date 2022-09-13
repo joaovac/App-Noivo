@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "537942711222",
+    "project_id": "nosso-lance-e87b1",
+    "storage_bucket": "nosso-lance-e87b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537942711222:android:72be6d6b9897634d3ebf17",
+        "android_client_info": {
+          "package_name": "com.example.nossolance.host"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537942711222-tqgiedksfu7tds60591sq99mpu4v0hhg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx1dCSDlWEwRdr6rdGYjeR_bnR5dPpyCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537942711222-tqgiedksfu7tds60591sq99mpu4v0hhg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
