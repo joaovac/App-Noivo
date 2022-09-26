@@ -28,6 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
+
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -47,13 +48,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 30,
                 ), */
-                reusableTextField(
-                    "Email", Icons.person_outline, false, _emailTextController),
+                reusableTextField("Email", Icons.person_outline, false,
+                    _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField(
-                    "Senha", Icons.lock_outline, true, _passwordTextController),
+                reusableTextField("Senha", Icons.lock_outline, true,
+                    _passwordTextController),
                 const SizedBox(
                   height: 5,
                 ),
@@ -101,12 +102,13 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget forgetPassword(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 35,
       alignment: Alignment.bottomRight,
       child: TextButton(
         child: const Text(
           "Esqueceu a senha?",
-          style: TextStyle(
-              color: Colors.white70, decoration: TextDecoration.underline),
+          style: TextStyle(color: Colors.white70, decoration: TextDecoration.underline),
           textAlign: TextAlign.right,
         ),
         onPressed: () => Navigator.push(
