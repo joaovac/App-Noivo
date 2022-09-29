@@ -1,4 +1,5 @@
 import 'package:app_lista_presentes/autenticacao/resetar_senha.dart';
+import 'package:app_lista_presentes/criarPresentes/newPresentPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_lista_presentes/autenticacao/widgets.dart';
 import 'package:app_lista_presentes/autenticacao/home.dart';
@@ -65,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           password: _passwordTextController.text)
                       .then((value) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                        MaterialPageRoute(builder: (context) => NewPresentScreen()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
