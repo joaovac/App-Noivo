@@ -9,6 +9,16 @@ Image logoWidget(String divorcio) {
   );
 }
 
+Image logo(String devorcio) {
+  return Image.asset(
+    devorcio,
+    fit: BoxFit.fitWidth,
+    width: 125,
+    height: 125,
+    alignment: Alignment.topRight,
+  );
+}
+
 TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(
