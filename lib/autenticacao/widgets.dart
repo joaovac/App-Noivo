@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
-Image logoWidget(String imageName) {
+Image logoWidget(String divorcio) {
   return Image.asset(
-    imageName,
+    divorcio,
     fit: BoxFit.fitWidth,
     width: 240,
-    height: 240,
-    color: Colors.white,
+    height: 125,
+  );
+}
+
+Image logo(String devorcio) {
+  return Image.asset(
+    devorcio,
+    fit: BoxFit.fitWidth,
+    width: 125,
+    height: 125,
+    alignment: Alignment.topRight,
   );
 }
 
