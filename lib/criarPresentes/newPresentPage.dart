@@ -30,9 +30,9 @@ class _NewPresentScreenState extends State<NewPresentScreen> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 213, 251, 254),
-              Color.fromARGB(123, 157, 252, 255),
-              Color.fromARGB(137, 248, 249, 238),
+              Colors.pink.shade400,
+              Colors.purple,
+              Colors.blue.shade800,
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             child: SingleChildScrollView(
                 child: Padding(
