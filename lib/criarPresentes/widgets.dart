@@ -4,6 +4,8 @@ TextField reusableTextField(String text, TextEditingController controller) {
   return TextField(
     controller: controller,
     enableSuggestions: true,
+    cursorColor: Colors.white,
+    style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
       labelText: text,
       labelStyle:

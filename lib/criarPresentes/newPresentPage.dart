@@ -1,6 +1,7 @@
 import 'package:app_lista_presentes/criarPresentes/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class NewPresentScreen extends StatefulWidget {
   const NewPresentScreen({Key? key}) : super(key: key);
@@ -10,6 +11,9 @@ class NewPresentScreen extends StatefulWidget {
 }
 
 class _NewPresentScreenState extends State<NewPresentScreen> {
+  final databaseReference = FirebaseDatabase(
+          databaseURL: 'https://nosso-lance-e87b1-default-rtdb.firebaseio.com/')
+      .reference();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -30,9 +34,9 @@ class _NewPresentScreenState extends State<NewPresentScreen> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
-              Colors.pink.shade400,
-              Colors.purple,
               Colors.blue.shade800,
+              Colors.purple,
+              Colors.red.shade400,
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
             child: SingleChildScrollView(
                 child: Padding(
@@ -43,7 +47,11 @@ class _NewPresentScreenState extends State<NewPresentScreen> {
                       ),
                       reusableTextField("Nome", _nomePresenteController),
                       const SizedBox(height: 20),
-                      reusableTextField("Loja", _lojaPresenteController)
+                      reusableTextField("Loja", _lojaPresenteController),
+                      Image.asset(
+                        'assets/images/devorcio.png',
+                        height: 100,
+                      ),
                     ])))));
     //Firebase
   }

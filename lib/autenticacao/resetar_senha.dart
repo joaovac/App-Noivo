@@ -29,9 +29,9 @@ class _ResetPasswordState extends State<ResetPassword> {
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-          Colors.pink.shade400,
-          Colors.purple,
-          Colors.blue.shade800,
+            Colors.pink.shade400,
+            Colors.purple,
+            Colors.blue.shade800,
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
               child: Padding(
@@ -41,8 +41,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Email", Icons.person_outline, false,
-                    _emailTextController),
+                reusableTextField(
+                    "Email", Icons.person_outline, false, _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
@@ -50,7 +50,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                   FirebaseAuth.instance
                       .sendPasswordResetEmail(email: _emailTextController.text)
                       .then((value) => Navigator.of(context).pop());
-                })
+                }),
+                logo("assets/images/devorcio.png"),
               ],
             ),
           ))),

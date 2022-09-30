@@ -15,7 +15,7 @@ Image logo(String devorcio) {
     fit: BoxFit.fitWidth,
     width: 125,
     height: 125,
-    alignment: Alignment.topRight,
+    
   );
 }
 
