@@ -33,9 +33,9 @@ class _SignInScreenState extends State<SignInScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-          Colors.blue.shade800,
-          Colors.purple,
           Colors.red.shade400,
+          Colors.purple,
+          Colors.blue.shade800,
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
