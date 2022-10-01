@@ -57,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(
                   height: 5,
                 ),
-                forgetPassword(context),
+                //forgetPassword(context),
                 firebaseUIButton(context, "Entrar", () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
@@ -70,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     print("Error ${error.toString()}");
                   });
                 }),
-                signUpOption()
+                //signUpOption()
               ],
             ),
           ),
@@ -79,7 +79,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Row signUpOption() {
+  /*Row signUpOption() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -113,5 +113,5 @@ class _SignInScreenState extends State<SignInScreen> {
             context, MaterialPageRoute(builder: (context) => ResetPassword())),
       ),
     );
-  }
+  } */
 }
