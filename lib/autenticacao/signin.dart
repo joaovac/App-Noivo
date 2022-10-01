@@ -70,6 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     print("Error ${error.toString()}");
                   });
                 }),
+                logo("assets/images/devorcio.png"),
                 //signUpOption()
               ],
             ),
