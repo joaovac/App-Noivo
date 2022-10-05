@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 MaterialPageRoute(builder: (context) => NewPresentScreen()));
           },
           backgroundColor: Color.fromARGB(255, 71, 32, 197),
-        ));
+        )
+        );
   }
 }
