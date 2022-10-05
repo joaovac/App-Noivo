@@ -31,10 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30.0, color: Color.fromARGB(255, 227, 233, 236)),
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => NewPresentScreen()));
+                MaterialPageRoute(builder: (context) => MeusPresentes()));
           },
           backgroundColor: Color.fromARGB(255, 71, 32, 197),
-        )
-        );
+        ));
   }
 }
