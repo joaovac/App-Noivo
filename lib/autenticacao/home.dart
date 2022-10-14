@@ -23,21 +23,24 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-        body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Colors.red.shade400,
-            Colors.purple,
-            Colors.blue.shade800,
-          ],begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          child: SingleChildScrollView(
-              child: Padding(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Colors.red.shade400,
+          Colors.purple,
+          Colors.blue.shade800,
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: SingleChildScrollView(
+          child: Padding(
             padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
-            ),
           ),
         ),
+      ),
+    );
+  }
+}
         /*body: Center(
           child: ElevatedButton(
             child: Text("Sair"),
@@ -49,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
-        ),*/
+        ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add,
               size: 30.0, color: Color.fromARGB(255, 227, 233, 236)),
@@ -60,4 +63,4 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Color.fromARGB(255, 71, 32, 197),
         ));
   }
-}
+} */
