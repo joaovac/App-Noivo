@@ -1,37 +1,39 @@
+import 'package:app_lista_presentes/autenticacao/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_lista_presentes/autenticacao/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_presentes/criarPresentes/newPresentPage.dart';
+import 'package:app_lista_presentes/criarPresentes/giftform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MeusPresentes());
-}
 
-class MeusPresentes extends StatelessWidget {
-  // This widget is the root of your application.
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(MeusPresentes());
+// } 
+
+// class MeusPresentes extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: Colors.purple,
+//       ),
+//       home: GiftForm(),
+//     );
+//   }
+// }
+
+class GiftForm extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: HomeScreen(),
-    );
-  }
+  _GiftFormState createState() => _GiftFormState();
 }
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
+class _GiftFormState extends State<GiftForm> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   TextEditingController _textPresentsController = TextEditingController();
   TextEditingController _textImageController = TextEditingController();
@@ -57,39 +59,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de presentes 🎁"),
+        title: const Text("Lista de presentes 🎁"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => refresh(),
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            const Text(
               "Vamos pedir um presentes?",
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             TextField(
               controller: _textPresentsController,
-              decoration: InputDecoration(labelText: "Nome do Presente"),
+              decoration: const InputDecoration(labelText: "Nome do Presente"),
             ),
             TextField(
               controller: _textImageController,
-              decoration: InputDecoration(labelText: "URl da imagem"),
+              decoration: const InputDecoration(labelText: "URl da imagem"),
             ),
             ElevatedButton(
-              onPressed: () => sendData(),
-              child: Text("Cadastar"),
+              onPressed: () { sendData(); Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));},
+              child: const Text("Cadastar"),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             (listNames.length == 0)
-                ? Text(
+                ? const Text(
                     "Nenhum presente no momento",
                     style: TextStyle(color: Colors.grey),
                     textAlign: TextAlign.center,
@@ -123,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 //enviar para o bd
   void sendData() {
-    String id = Uuid().v1(); //criando id aleatorio
+    String id = const Uuid().v1(); //criando id aleatorio
     db.collection("listPresents").doc(id).set({
       "comprado": false,
       "id": id,
@@ -135,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _textPresentsController.text = "";
     _textImageController.text = "";
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text("Salvo no Firestore!"),
       ),
     );
