@@ -34,13 +34,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   FirebaseFirestore db = FirebaseFirestore.instance;
   TextEditingController _textPresentsController = TextEditingController();
+  TextEditingController _textImageController = TextEditingController();
 
   List<String> listNames = [];
 
   @override
   void initState() {
     refresh();
-
+    //atualização automatica
     db.collection("listPresents").snapshots().listen((snapshot) {
       setState(() {
         listNames = [];
@@ -62,8 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () => refresh(),
         child: Icon(Icons.refresh),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -75,6 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
             TextField(
               controller: _textPresentsController,
               decoration: InputDecoration(labelText: "Nome do Presente"),
+            ),
+            TextField(
+              controller: _textImageController,
+              decoration: InputDecoration(labelText: "URl da imagem"),
             ),
             ElevatedButton(
               onPressed: () => sendData(),
@@ -107,22 +112,28 @@ class _HomeScreenState extends State<HomeScreen> {
     query.docs.forEach((document) {
       print(document.id); //Mostrar o id que escolhemos
       String data = document.get("name");
+      String data2 = document.get("img");
+
       setState(() {
         listNames.add(data);
+        listNames.add(data2);
       });
     });
   }
 
-//impremir lista
+//enviar para o bd
   void sendData() {
     String id = Uuid().v1(); //criando id aleatorio
-    db
-        .collection("listPresents")
-        .doc(id)
-        .set({"name": _textPresentsController.text});
+    db.collection("listPresents").doc(id).set({
+      "comprado": false,
+      "id": id,
+      "name": _textPresentsController.text,
+      "image": _textImageController.text
+    });
 
     //Visual Feedback
     _textPresentsController.text = "";
+    _textImageController.text = "";
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("Salvo no Firestore!"),
