@@ -14,7 +14,31 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          "Lista de presentes 🎁",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+      ),
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Colors.red.shade400,
+            Colors.purple,
+            Colors.blue.shade800,
+          ],begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          child: SingleChildScrollView(
+              child: Padding(
+            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            ),
+          ),
+        ),
+        /*body: Center(
           child: ElevatedButton(
             child: Text("Sair"),
             onPressed: () {
@@ -25,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
-        ),
+        ),*/
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add,
               size: 30.0, color: Color.fromARGB(255, 227, 233, 236)),
