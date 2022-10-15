@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:app_lista_presentes/autenticacao/home.dart';
+import 'package:app_lista_presentes/autenticacao/widgets.dart';
+import 'package:app_lista_presentes/criarPresentes/storagePage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_lista_presentes/autenticacao/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,13 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:app_lista_presentes/criarPresentes/giftform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
-
+import 'package:flutter/cupertino.dart';
 
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await Firebase.initializeApp();
 //   runApp(MeusPresentes());
-// } 
+// }
 
 // class MeusPresentes extends StatelessWidget {
 //   // This widget is the root of your application.
@@ -42,7 +46,7 @@ class _GiftFormState extends State<GiftForm> {
 
   @override
   void initState() {
-    refresh();
+    // refresh();
     //atualização automatica
     db.collection("listPresents").snapshots().listen((snapshot) {
       setState(() {
@@ -62,7 +66,10 @@ class _GiftFormState extends State<GiftForm> {
         title: const Text("Lista de presentes 🎁"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => refresh(),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const storagePage()));
+        },
         child: const Icon(Icons.refresh),
       ),
       body: SingleChildScrollView(
@@ -83,13 +90,63 @@ class _GiftFormState extends State<GiftForm> {
               controller: _textImageController,
               decoration: const InputDecoration(labelText: "URl da imagem"),
             ),
+            const Text(
+              "ou",
+              style: TextStyle(
+                fontFamily: 'Pacifico',
+                fontSize: 20,
+                color: Colors.purpleAccent,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
             ElevatedButton(
-              onPressed: () { sendData(); Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));},
-              child: const Text("Cadastar"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
+                shadowColor: Colors.grey,
+                shape: StadiumBorder(),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: const TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const storagePage()));
+              },
+              child: const Text("Adicionar IMG"),
             ),
             const SizedBox(
-              height: 16,
+              height: 50,
             ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
+                shadowColor: Colors.grey,
+                shape: StadiumBorder(),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                textStyle: const TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              onPressed: () {
+                sendData();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreen()));
+              },
+              child: const Text("Cadastar"),
+            ),
+            
             (listNames.length == 0)
                 ? const Text(
                     "Nenhum presente no momento",
@@ -107,21 +164,21 @@ class _GiftFormState extends State<GiftForm> {
     );
   }
 
-  void refresh() async {
-    QuerySnapshot query = await db.collection("listPresents").get();
+  // void refresh() async {
+  //   QuerySnapshot query = await db.collection("listPresents").get();
 
-    listNames = [];
-    query.docs.forEach((document) {
-      print(document.id); //Mostrar o id que escolhemos
-      String data = document.get("name");
-      String data2 = document.get("img");
+  //   listNames = [];
+  //   query.docs.forEach((document) {
+  //     print(document.id); //Mostrar o id que escolhemos
+  //     String data = document.get("name");
+  //     String data2 = document.get("img");
 
-      setState(() {
-        listNames.add(data);
-        listNames.add(data2);
-      });
-    });
-  }
+  //     setState(() {
+  //       listNames.add(data);
+  //       listNames.add(data2);
+  //     });
+  //   });
+  // }
 
 //enviar para o bd
   void sendData() {
