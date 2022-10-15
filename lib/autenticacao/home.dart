@@ -23,45 +23,76 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //backgroundColor: Colors.purple.shade100,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          backgroundColor: Colors.purple,
+          //backgroundColor: Colors.purple,
           elevation: 0,
           title: const Text(
             "Lista de presentes 🎁",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
-        body: StreamBuilder<List<user.User>>(
-          stream: readUsers(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final users = snapshot.data!;
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView(
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 300,
-                        childAspectRatio: 3 / 2,
-                        crossAxisSpacing: 05,
-                        mainAxisSpacing: 20),
-                    children: [
-                      for (final user in users)
-                        Card(
-                          child: Column(
-                            children: [
-                              Container(width: MediaQuery.of(context).size.width *1,color: Colors.pink.shade100,height:90, child: Image.network(user.image,fit: BoxFit.fitHeight,)),
-                              Text(user.name, style: TextStyle(fontSize: 20)),
-                              //Text(user.comprado.toString()),
-                            ],
-                          ),
-                        )
-                    ]),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Colors.red.shade400,
+            Colors.purple,
+            Colors.blue.shade800,
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          child: StreamBuilder<List<user.User>>(
+            stream: readUsers(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final users = snapshot.data!;
+                return Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+                  child: GridView.count(
+                      //gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      //maxCrossAxisExtent: 200,
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.25,
+                      crossAxisSpacing: 05,
+                      mainAxisSpacing: 20,
+                      children: [
+                        for (final user in users)
+                          Card(
+                              color: Colors.purple.shade100,
+                              child: Column(
+                                children: [
+                                  Container(
+                                      width:
+                                          MediaQuery.of(context).size.width * 1,
+                                      color: Colors.transparent,
+                                      height: 90,
+                                      child: Image.network(
+                                        user.image,
+                                        fit: BoxFit.fill,
+                                      )),
+                                  CheckboxListTile(
+                                    value: user.comprado,
+                                    onChanged: (bool? value) {
+                                      FirebaseFirestore.instance
+                                          .collection("listPresents")
+                                          .doc(user.id)
+                                          .update({"comprado": value});
+                                    },
+                                    title: Text(user.name,
+                                        style: TextStyle(fontSize: 20),
+                                        textAlign: TextAlign.center),
+                                  )
+                                ],
+                              ))
+                      ]),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ),
         /*
         body: Container(
@@ -96,10 +127,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Icon(Icons.add,
               size: 30.0, color: Color.fromARGB(255, 227, 233, 236)),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => GiftForm()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => GiftForm()));
           },
-          backgroundColor: Color.fromARGB(255, 71, 32, 197),
+          //backgroundColor: Color.fromARGB(255, 71, 32, 197),
         ));
   }
 }

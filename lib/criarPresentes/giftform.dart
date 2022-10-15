@@ -1,4 +1,5 @@
 import 'package:app_lista_presentes/autenticacao/home.dart';
+import 'package:app_lista_presentes/autenticacao/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app_lista_presentes/autenticacao/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,12 +8,11 @@ import 'package:app_lista_presentes/criarPresentes/giftform.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
-
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await Firebase.initializeApp();
 //   runApp(MeusPresentes());
-// } 
+// }
 
 // class MeusPresentes extends StatelessWidget {
 //   // This widget is the root of your application.
@@ -58,50 +58,87 @@ class _GiftFormState extends State<GiftForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.orange,
       appBar: AppBar(
-        title: const Text("Lista de presentes 🎁"),
+        title: const Text("Adicionar presentes 🎁"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => refresh(),
-        child: const Icon(Icons.refresh),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              "Vamos pedir um presentes?",
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            TextField(
-              controller: _textPresentsController,
-              decoration: const InputDecoration(labelText: "Nome do Presente"),
-            ),
-            TextField(
-              controller: _textImageController,
-              decoration: const InputDecoration(labelText: "URl da imagem"),
-            ),
-            ElevatedButton(
-              onPressed: () { sendData(); Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));},
-              child: const Text("Cadastar"),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            (listNames.length == 0)
-                ? const Text(
-                    "Nenhum presente no momento",
-                    style: TextStyle(color: Colors.grey),
-                    textAlign: TextAlign.center,
-                  )
-                : Column(
-                    children: [
-                      for (String s in listNames) Text(s),
-                    ],
-                  )
-          ],
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => refresh(),
+      //   child: const Icon(Icons.refresh),
+      // ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Colors.red.shade400,
+          Colors.purple,
+          Colors.blue.shade800,
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                "Vamos pedir uns presentes?",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20, top: 15),
+                child: reusableTextField(
+                    "Nome do Presente", null, false, _textPresentsController),
+              ),
+              reusableTextField("Link da Imagem", null, false,
+                  _textImageController), //link da imagem
+              // TextField(
+              //   controller: _textPresentsController,
+              //   decoration: const InputDecoration(labelText: "Nome do Presente"),
+              // ),
+              // TextField(
+              //   controller: _textImageController,
+              //   decoration: const InputDecoration(labelText: "URl da imagem"),
+              // ),
+
+
+              // firebaseUIButton(context, "Cadastrar", (onPressed) {
+              //   sendData();
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(
+              //           builder: (context) => const HomeScreen()));
+              // }),
+
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20, top: 15),
+                child: ElevatedButton(
+                  onPressed: () {
+                    sendData();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+                  },
+                  child: const Text("Cadastar"),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              (listNames.length == 0)
+                  ? const Text(
+                      "Nenhum presente no momento",
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    )
+                  : Column(
+                      children: [
+                        for (String s in listNames) Text(s),
+                      ],
+                    )
+            ],
+          ),
         ),
       ),
     );
