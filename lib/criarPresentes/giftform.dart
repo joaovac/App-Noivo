@@ -102,13 +102,16 @@ class _GiftFormState extends State<GiftForm> {
               // ),
 
 
-              // firebaseUIButton(context, "Cadastrar", (onPressed) {
-              //   sendData();
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => const HomeScreen()));
-              // }),
+              // Padding(
+              //   padding: const EdgeInsets.only(bottom: 20, top: 15),
+              //   child: firebaseUIButton(context, "Cadastrar", (onPressed) {
+              //     sendData();
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const HomeScreen()));
+              //   }),
+              // ),
 
               Padding(
                 padding: const EdgeInsets.only(bottom: 20, top: 15),
