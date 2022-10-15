@@ -94,10 +94,10 @@ class _GiftFormState extends State<GiftForm> {
             const Text(
               "ou",
               style: TextStyle(
-                fontFamily: 'Pacifico',
-                fontSize: 20,
-                color: Colors.purpleAccent,
+                fontFamily: 'Raleway',
+                color: Colors.black87,
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
               textAlign: TextAlign.center,
             ),
@@ -123,7 +123,7 @@ class _GiftFormState extends State<GiftForm> {
               child: const Text("Adicionar IMG"),
             ),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
