@@ -62,8 +62,9 @@ class _GiftFormState extends State<GiftForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.orange,
       appBar: AppBar(
-        title: const Text("Lista de presentes 🎁"),
+        title: const Text("Adicionar presentes 🎁"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -146,7 +147,6 @@ class _GiftFormState extends State<GiftForm> {
               },
               child: const Text("Cadastar"),
             ),
-            
             (listNames.length == 0)
                 ? const Text(
                     "Nenhum presente no momento",

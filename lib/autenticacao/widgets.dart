@@ -19,7 +19,7 @@ Image logo(String devorcio) {
   );
 }
 
-TextField reusableTextField(String text, IconData icon, bool isPasswordType,
+TextField reusableTextField(String text, IconData? icon, bool isPasswordType,
     TextEditingController controller) {
   return TextField(
     controller: controller,
