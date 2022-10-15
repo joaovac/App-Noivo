@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:app_lista_presentes/autenticacao/home.dart';
 import 'package:app_lista_presentes/autenticacao/widgets.dart';
 import 'package:app_lista_presentes/criarPresentes/storagePage.dart';
